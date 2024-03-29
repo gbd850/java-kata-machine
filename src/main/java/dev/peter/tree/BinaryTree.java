@@ -92,4 +92,23 @@ public class BinaryTree<T> {
         return false;
     }
 
+    private boolean compareTrees(BinaryNode<T> node1, BinaryNode<T> node2) {
+        if (isNull(node1) && isNull(node2)) {
+            return true;
+        }
+
+        if (isNull(node1) || isNull(node2)) {
+            return false;
+        }
+
+        if (!node1.getValue().equals(node2.getValue())) {
+            return false;
+        }
+
+        return compareTrees(node1.getLeft(), node2.getLeft()) && compareTrees(node1.getRight(), node2.getRight());
+    }
+    public boolean compare(BinaryTree<T> tree) {
+        return compareTrees(this.head, tree.head);
+    }
+
 }

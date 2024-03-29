@@ -64,4 +64,25 @@ class BinaryTreeTest {
 
         assertFalse(tree.breadthFirstSearch(5));
     }
+
+    @Test
+    void givenIdenticalTrees_shouldCompareReturnTrue() {
+        BinaryNode<Integer> head = new BinaryNode<>(1, new BinaryNode<>(2, null, null), new BinaryNode<>(3, null, null));
+
+        BinaryTree<Integer> tree1 = new BinaryTree<>(head);
+        BinaryTree<Integer> tree2 = new BinaryTree<>(head);
+
+        assertTrue(tree1.compare(tree2));
+    }
+
+    @Test
+    void givenNonIdenticalTrees_shouldCompareReturnFalse() {
+        BinaryNode<Integer> head1 = new BinaryNode<>(1, new BinaryNode<>(2, null, null), new BinaryNode<>(3, null, null));
+        BinaryNode<Integer> head2 = new BinaryNode<>(1, new BinaryNode<>(2, new BinaryNode<>(3, null, null), null), null);
+
+        BinaryTree<Integer> tree1 = new BinaryTree<>(head1);
+        BinaryTree<Integer> tree2 = new BinaryTree<>(head2);
+
+        assertFalse(tree1.compare(tree2));
+    }
 }
