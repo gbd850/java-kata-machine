@@ -1,7 +1,6 @@
 package dev.peter.tree;
 
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 import static java.util.Objects.isNull;
 
@@ -66,6 +65,31 @@ public class BinaryTree<T> {
 
     public List<T> postOrderSearch() {
         return walkPostOrder(this.head, new Stack<>()).stream().toList();
+    }
+
+    public boolean breadthFirstSearch(T value) {
+        Queue<BinaryNode<T>> queue = new LinkedList<>();
+
+        queue.add(this.head);
+
+        BinaryNode<T> curr;
+
+        while (queue.size() > 0) {
+            curr = queue.remove();
+
+            if (curr.getValue().equals(value)) {
+                return true;
+            }
+
+            if (!isNull(curr.getLeft())) {
+                queue.add(curr.getLeft());
+            }
+            if (!isNull(curr.getRight())) {
+                queue.add(curr.getRight());
+            }
+        }
+
+        return false;
     }
 
 }

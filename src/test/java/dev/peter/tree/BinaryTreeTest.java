@@ -46,4 +46,22 @@ class BinaryTreeTest {
 
         assertArrayEquals(path.toArray(), expected);
     }
+
+    @Test
+    void givenTreeAndValidValue_shouldBreadthFirstSearchReturnTrue() {
+        BinaryNode<Integer> head = new BinaryNode<>(1, new BinaryNode<>(2, null, null), new BinaryNode<>(3, null, null));
+
+        BinaryTree<Integer> tree = new BinaryTree<>(head);
+
+        assertTrue(tree.breadthFirstSearch(2));
+    }
+
+    @Test
+    void givenTreeAndInvalidValue_shouldBreadthFirstSearchReturnFalse() {
+        BinaryNode<Integer> head = new BinaryNode<>(1, new BinaryNode<>(2, null, null), new BinaryNode<>(3, null, null));
+
+        BinaryTree<Integer> tree = new BinaryTree<>(head);
+
+        assertFalse(tree.breadthFirstSearch(5));
+    }
 }
