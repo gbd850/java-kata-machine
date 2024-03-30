@@ -4,7 +4,7 @@ import java.util.*;
 
 import static java.util.Objects.isNull;
 
-public class BinaryTree<T> {
+public class BinaryTree<T extends Number> {
 
     private BinaryNode<T> head;
 
@@ -90,6 +90,26 @@ public class BinaryTree<T> {
         }
 
         return false;
+    }
+
+    private boolean search(BinaryNode<T> curr, T value) {
+        if (isNull(curr)) {
+            return false;
+        }
+
+        if (curr.getValue().equals(value)) {
+            return true;
+        }
+
+        if (curr.getValue().doubleValue() < value.doubleValue()) {
+            return search(curr.getRight(), value);
+        }
+
+        return search(curr.getLeft(), value);
+    }
+
+    public boolean depthFirstSearchBST(T value) {
+        return search(this.head, value);
     }
 
     private boolean compareTrees(BinaryNode<T> node1, BinaryNode<T> node2) {

@@ -66,6 +66,24 @@ class BinaryTreeTest {
     }
 
     @Test
+    void givenTreeAndValidValue_shouldDepthFirstSearchReturnTrue() {
+        BinaryNode<Integer> head = new BinaryNode<>(2, new BinaryNode<>(1, null, null), new BinaryNode<>(3, null, null));
+
+        BinaryTree<Integer> tree = new BinaryTree<>(head);
+
+        assertTrue(tree.depthFirstSearchBST(1));
+    }
+
+    @Test
+    void givenTreeAndInvalidValue_shouldDepthFirstSearchReturnFalse() {
+        BinaryNode<Integer> head = new BinaryNode<>(2, new BinaryNode<>(1, null, null), new BinaryNode<>(3, null, null));
+
+        BinaryTree<Integer> tree = new BinaryTree<>(head);
+
+        assertFalse(tree.depthFirstSearchBST(5));
+    }
+
+    @Test
     void givenIdenticalTrees_shouldCompareReturnTrue() {
         BinaryNode<Integer> head = new BinaryNode<>(1, new BinaryNode<>(2, null, null), new BinaryNode<>(3, null, null));
 

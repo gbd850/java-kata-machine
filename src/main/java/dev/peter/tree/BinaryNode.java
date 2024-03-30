@@ -1,6 +1,6 @@
 package dev.peter.tree;
 
-public class BinaryNode<T> {
+public class BinaryNode<T extends Number> {
 
     private T value;
 
