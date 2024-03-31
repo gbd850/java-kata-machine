@@ -1,4 +1,4 @@
-package dev.peter;
+package dev.peter.graph;
 
 import java.util.*;
 
@@ -54,6 +54,45 @@ public class Graph {
             Collections.reverse(out);
         }
         return out.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    private static boolean walk(GraphEdge[][] graph, int curr, int value, boolean[] seen, Stack<Integer> path) {
+
+
+        if (seen[curr]) {
+            return false;
+        }
+
+        seen[curr] = true;
+
+        // pre
+        path.push(curr);
+        if (curr == value) {
+            return true;
+        }
+
+        // recurse
+        GraphEdge[] list = graph[curr];
+        for (int i = 0; i < list.length; i++) {
+            GraphEdge edge = list[i];
+
+            if (walk(graph, edge.getTo(), value, seen, path)) {
+                return true;
+            }
+        }
+
+        // post
+        path.pop();
+
+        return false;
+    }
+    public static int[] depthFirstSearch_AdjList(GraphEdge[][] graph, int source, int value) {
+        final boolean[] seen = new boolean[graph.length];
+        Stack<Integer> path = new Stack<>();
+
+        walk(graph, source, value, seen, path);
+
+        return path.stream().mapToInt(Integer::intValue).toArray();
     }
 
 }
